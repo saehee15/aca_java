@@ -17,7 +17,7 @@
 </body>
 </html>
 <script>
-
+	// servelt파일 ageCheckServlet.java랑 연결됨
 	$("#ageCheck").submit(function (event) {
 		event.preventDefault();
 		
