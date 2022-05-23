@@ -10,19 +10,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class ScoreServlet
+ * Servlet implementation class CalculatorServlet
  */
-
-//score1.do는 선생님, score.do는 내가
-//http://127.0.0.1:8080/project2/score.do?user=홍길동&kor=20&eng=10&mat=20
-@WebServlet("/score.do")
-public class ScoreServlet extends HttpServlet {
+@WebServlet("/calculator")
+public class CalculatorServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ScoreServlet() {
+    public CalculatorServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,29 +28,40 @@ public class ScoreServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int x = Integer.parseInt(request.getParameter("x"));
+		int y = Integer.parseInt(request.getParameter("y"));
+		String operator = request.getParameter("operator");
+		String oper="+";
 		
-		request.setCharacterEncoding("utf-8");
-		response.setCharacterEncoding("utf-8");
+		int result =0;
+		if(operator.equals("1")) {
+			oper ="+";
+			result = x+y;
+		}
+		else if(operator.equals("2")) {
+			oper = "-";
+			result = x-y;
+		}
+		else if(operator.equals("3")) {
+			oper = "*";
+			result = x*y;
+		}
+		else {
+			oper="/";
+			result = x/y;
+		}
 		
 		PrintWriter out = response.getWriter();
 		
-		
-		// 클라이언트로부터 값을 받아 오는 방법
-		String name = request.getParameter("user"); 
-		int kor = Integer.parseInt(request.getParameter("kor")); 
-		int eng = Integer.parseInt(request.getParameter("eng")); 
-		int mat = Integer.parseInt(request.getParameter("mat")); 
-		int total = kor + eng + mat ;
-		int avg = (kor + eng + mat)/3;
+		// ctrl + shift + o : import 단축키
+		// ctrl + shift + x : 문자를 대문자로
+		// ctrl + shift + y : 문자를 소문자로
+		// ctrl + f : 동일파일내서 검색
+		// ctrl + h : 프로젝트 전체에서 검색(여러개의 파일에서 찾고자 할때)
 		
 		out.println("<html>");
-		out.println("<meta charset='UTF-8'>");
-		out.println("<body>");
-		out.println("<h1>"+ name +"님의 총점은" +total + "이고 평균은" + avg +"입니다.</h1>");
-		out.println("</body>");
-		out.println("</html>");
-		
-		
+		out.println(String.format("<h1>%d %s %d = %d</h1>", x, oper, y, result));
+		out.println("<html>");
 	}
 
 	/**

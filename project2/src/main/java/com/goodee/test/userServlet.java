@@ -10,19 +10,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class ScoreServlet
+ * Servlet implementation class userServlet
  */
-
-//score1.do는 선생님, score.do는 내가
-//http://127.0.0.1:8080/project2/score.do?user=홍길동&kor=20&eng=10&mat=20
-@WebServlet("/score.do")
-public class ScoreServlet extends HttpServlet {
+@WebServlet("/user.do")
+public class userServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ScoreServlet() {
+    public userServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,24 +29,21 @@ public class ScoreServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		request.setCharacterEncoding("utf-8");
+		
+		request.setCharacterEncoding("utf-8"); // 순서도 중요하네, PrintWriter 밑에 쓰니까 인코딩 안되고 글씨 깨짐
 		response.setCharacterEncoding("utf-8");
 		
+		String user = request.getParameter("user");
+		String phone = request.getParameter("phone");
+		String email = request.getParameter("email");
+		
 		PrintWriter out = response.getWriter();
-		
-		
-		// 클라이언트로부터 값을 받아 오는 방법
-		String name = request.getParameter("user"); 
-		int kor = Integer.parseInt(request.getParameter("kor")); 
-		int eng = Integer.parseInt(request.getParameter("eng")); 
-		int mat = Integer.parseInt(request.getParameter("mat")); 
-		int total = kor + eng + mat ;
-		int avg = (kor + eng + mat)/3;
 		
 		out.println("<html>");
 		out.println("<meta charset='UTF-8'>");
 		out.println("<body>");
-		out.println("<h1>"+ name +"님의 총점은" +total + "이고 평균은" + avg +"입니다.</h1>");
+		out.println(String.format("<h1>%s님의 전화번호는 %s이고 이메일은 %s입니다.</h1>", user, phone, email));
+		out.println("<h1>"+ user +"님의 전화번호는" +phone + "이고 이메일은" + email +"입니다.</h1>");
 		out.println("</body>");
 		out.println("</html>");
 		

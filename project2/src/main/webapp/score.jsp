@@ -8,10 +8,9 @@
 <script src="/project2/javascript/common.js"></script>
 </head>
 <body>
-
+<!-- score1은 선생님 코드, score는 내가 작성 -->
  	<form name="myform" id="myform" method="post"  action="/project2/score.do">  
  	
- 		
 		user: <input type="text" name="user"> <br/>
 		kor1: <input type="text" name="kor" /> <br/>
 		eng1: <input type="text" name="eng" /> <br/>
