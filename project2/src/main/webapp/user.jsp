@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<!-- userServlet 이랑 연결됨  -->
 	<form id="userInfo" action="user.do" method="post">
 	
 		이름: <input type="text" name="user"> <br />
