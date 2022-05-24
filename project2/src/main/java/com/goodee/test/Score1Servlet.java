@@ -39,7 +39,7 @@ public class Score1Servlet extends HttpServlet {
 		// import 단축키 ctrl + shift + o
 		PrintWriter out = response.getWriter();
 		
-		// 클ㄹ아이언트로부터 정보 받기
+		// 클라이언트로부터 정보 받기
 		String name = request.getParameter("name");
 		String kor = request.getParameter("kor");
 		String eng = request.getParameter("eng");
